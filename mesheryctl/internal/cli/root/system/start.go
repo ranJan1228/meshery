@@ -83,7 +83,7 @@ mesheryctl system start --provider Meshery
 		}
 		cfg, err := config.GetMesheryCtl(viper.GetViper())
 		if err != nil {
-			return errors.Wrap(err, utils.SystemError("failed to get mesheryctl config"))
+    		return err
 		}
 		ctx, err := cfg.GetCurrentContext()
 		if err != nil {
@@ -144,7 +144,7 @@ func ensureMesheryFolder() error {
 func prepareStartContext() (*config.MesheryCtlConfig, *config.Context, string, string, string, error) {
 	mctlCfg, err := config.GetMesheryCtl(viper.GetViper())
 	if err != nil {
-		return nil, nil, "", "", "", errors.Wrap(err, utils.SystemError("failed to process config"))
+		return nil, nil, "", "", "", err
 	}
 
 	if tempContext != "" {
